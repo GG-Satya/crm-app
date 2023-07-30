@@ -1,3 +1,16 @@
 body{
-	background: red;
+	background: #D3D3D3;
+}
+bg-primary{
+	background :  #007C80;
+}
+.home-banner{
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	width:100%;
+	background: linear-gradient(rgba(0,0,0,0.8),rgba(0,0,0,0.8)),url(../img/crm_banner04.jpg);
+	background-size: cover;
+	height:90vh;
+	color: white;
 }
