@@ -32,13 +32,13 @@ public class Customer {
 	private String description;
 	
 	@ManyToOne(fetch = FetchType.LAZY, cascade = {CascadeType.PERSIST, CascadeType.MERGE})
-	private User user;
+	private AppUser appUser;
 	
-	public User getUser() {
-		return user;
+	public AppUser getAppUser() {
+		return appUser;
 	}
-	public void setUser(User user) {
-		this.user = user;
+	public void setAppUser(AppUser appUser) {
+		this.appUser = appUser;
 	}
 	public Customer() {
 		super();
@@ -90,6 +90,12 @@ public class Customer {
 	}
 	public void setDescription(String description) {
 		this.description = description;
+	}
+	@Override
+	public String toString() {
+		return "Customer [id=" + id + ", name=" + name + ", nickName=" + nickName + ", work=" + work + ", email="
+				+ email + ", phone=" + phone + ", image=" + image + ", description=" + description + ", appUser="
+				+ appUser + "]";
 	}
 	
 }

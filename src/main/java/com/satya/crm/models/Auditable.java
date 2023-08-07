@@ -14,9 +14,9 @@ public class Auditable {
     private LocalDateTime updatedOn;
     
     @ManyToOne(fetch = FetchType.LAZY, cascade = {CascadeType.PERSIST, CascadeType.MERGE})
-    private User createdBy;
+    private AppUser createdBy;
 
     @ManyToOne(fetch = FetchType.LAZY, cascade = {CascadeType.PERSIST, CascadeType.MERGE})
-    private User updatedBy;
+    private AppUser updatedBy;
     
 }

@@ -4,6 +4,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.satya.crm.models.AppUser;
+
 @Controller
 public class HomeController {
 	
@@ -22,6 +24,7 @@ public class HomeController {
 	@RequestMapping("/signup")
 	public String signup(Model model){
 		model.addAttribute("title", "Registration (CRM)");
+		model.addAttribute("appUser",new AppUser());
 		return "signup";
 	}
 }

@@ -14,3 +14,8 @@ bg-primary{
 	height:90vh;
 	color: white;
 }
+.my-card{
+	padding: 20px;
+	background:#ffffff;
+	border-radius: 6px;
+}
