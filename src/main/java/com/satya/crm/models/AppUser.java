@@ -12,19 +12,33 @@ import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.SequenceGenerator;
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Pattern;
+import jakarta.validation.constraints.Size;
 
 @Entity
-@Table(name="\"USER\"")
-public class User {
+@Table(name="APP_USER")
+public class AppUser {
 	
 	@Id
-	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "user_seq")
-	@SequenceGenerator(name = "user_seq", sequenceName = "user_seq", allocationSize = 1)
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "APP_USER_SEQ")
+	@SequenceGenerator(name = "APP_USER_SEQ", sequenceName = "APP_USER_SEQ", allocationSize = 1)
 	private long id;
 	
+	@NotBlank(message = "Name should not be blank")
+	@Size(min =2, max = 20, message="The name should be within 2 to 20 characters")
 	private String name;
+	
 	@Column(unique = true)
+	@Email(message = "Invalid email format")
+	@NotBlank(message = "Email should not be blank")
 	private String email;
+	
+	@NotBlank(message = "Password should not be blank")
+	@Size(min = 8, message = "Password should be at least 8 characters long")
+	@Pattern(regexp = "(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}", 
+	         message = "Password must contain at least one uppercase letter, one lowercase letter, one digit, and one special character")
 	private String password;
 	private String role;
 	private boolean enabled;
@@ -32,13 +46,14 @@ public class User {
 	@Column(length = 500)
 	private String about;
 	
-	@OneToMany(cascade = CascadeType.ALL,fetch = FetchType.LAZY,mappedBy = "user")
+	@OneToMany(cascade = CascadeType.ALL,fetch = FetchType.LAZY,mappedBy = "appUser")
 	private List<Customer> customerList;
 	
-	public User() {
+	public AppUser() {
 		super();
+		// TODO Auto-generated constructor stub
 	}
-	
+
 	public List<Customer> getCustomerList() {
 		return customerList;
 	}
@@ -95,6 +110,12 @@ public class User {
 	public void setAbout(String about) {
 		this.about = about;
 	}
-	
-	
+
+	@Override
+	public String toString() {
+		return "AppUser [id=" + id + ", name=" + name + ", email=" + email + ", password=" + password + ", role=" + role
+				+ ", enabled=" + enabled + ", imageUrl=" + imageUrl + ", about=" + about + ", customerList="
+				+ customerList + "]";
+	}
+
 }
